@@ -8,6 +8,8 @@ async function scrap(url) {
     headless: false,
     ignoreDefaultArgs: ["--disable-extensions"],
     args: ["--no-sandbox", "--disable-setuid-sandbox"],
+    executablePath:
+      "./node_modules/puppeteer/.local-chromium/win64-656675/chrome-win/chrome.exe",
   });
 
   //Create new page
