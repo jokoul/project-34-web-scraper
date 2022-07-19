@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="style.css" />
+    <title>web scraper titles - images</title>
+  </head>
+  <body>
+    <h1>Web Scraper</h1>
+    <p class="instruction">
+      Enter a website url to get Information about this website. You will get
+      all the headings inside the given url website.
+    </p>
+    <div class="wrapper">
+      <input class="urlInput" type="text" placeholder="paste Your URL" />
+      <button type="submit" onclick="submitUrl()">Scrap website</button>
+    </div>
+    <main>
+      <h2>List of Heading level 1 (h1) :</h2>
+      <div class="container"></div>
+      <h2>List of Heading level 2 (h2) :</h2>
+
+      <div class="container2"></div>
+      <h2>List of Heading level 3 (h3) :</h2>
+
+      <div class="container3"></div>
+
+      <h2>Screenshot of your site :</h2>
+
+      <div class="container4">
+        <img src="./img/pageimg.png" alt="screenshot page" />
+      </div>
+    </main>
+
+    <script defer>
+      function newEl(type, attrs = {}) {
+        const el = document.createElement(type);
+        for (let attr in attrs) {
+          const value = attrs[attr];
+          if (attr == "innerText") el.innerText = value;
+          else el.setAttribute(attr, value);
+        }
+        return el;
+      }
+
+      function submitUrl() {
+        const siteUrl = document.querySelector(".urlInput").value;
+        //send to server
+        fetch("http://localhost:3000/siteinfo", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ url: siteUrl }),
+        })
+          .then((response) => {
+            return response.json();
+          })
+          .then((data) => {
+            console.log(data);
+            data = data.articles;
+            console.log(data);
+            let h1Array = data.filter((item) => {
+              console.log(item);
+              return item.siteTitle !== undefined;
+            });
+            console.log(h1Array);
+            let h2Array = data.filter((item) => {
+              return item.siteTitle2 !== undefined;
+            });
+            console.log(h2Array);
+            let h3Array = data.filter((item) => {
+              return item.siteTitle3 !== undefined;
+            });
+            console.log(h3Array);
+
+            const ctr = document.querySelector(".container");
+            const ctr2 = document.querySelector(".container2");
+            const ctr3 = document.querySelector(".container3");
+
+            h1Array.forEach((title) => {
+              const heading1 = newEl("p", { innerText: title.siteTitle });
+              ctr.appendChild(heading1);
+            });
+            h2Array.forEach((title) => {
+              const heading2 = newEl("p", { innerText: title.siteTitle2 });
+              ctr2.appendChild(heading2);
+            });
+            h3Array.forEach((title) => {
+              const heading3 = newEl("p", { innerText: title.siteTitle3 });
+              ctr3.appendChild(heading3);
+            });
+          });
+      }
+    </script>
+  </body>
+</html>
