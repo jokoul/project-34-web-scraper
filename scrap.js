@@ -1,11 +1,15 @@
-const puppeteer = require("puppeteer-core");
+const puppeteer = require("puppeteer");
 const fs = require("fs").promises;
 const path = require("path");
 
 async function scrap(url) {
   //Launch browser
   const browser = await puppeteer.launch({
+    headless: false,
+    ignoreDefaultArgs: ["--disable-extensions"],
     args: ["--no-sandbox", "--disable-setuid-sandbox"],
+    executablePath:
+      "./node_modules/puppeteer/.local-chromium/win64-656675/chrome-win/chrome.exe",
   });
 
   //Create new page
