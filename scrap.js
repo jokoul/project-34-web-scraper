@@ -6,6 +6,7 @@ async function scrap(url) {
   //Launch browser
   const browser = await puppeteer.launch({
     headless: false,
+    ignoreDefaultArgs: ["--disable-extensions"],
     args: ["--no-sandbox", "--disable-setuid-sandbox"],
   });
 
