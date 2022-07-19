@@ -11,7 +11,7 @@ function newEl(type, attrs = {}) {
 function submitUrlHeading() {
   const siteUrl = document.querySelector(".urlInput").value;
   //send to server
-  fetch("https://web-scraper-joan.herokuapp.com//siteinfo", {
+  fetch("https://web-scraper-joan.herokuapp.com/siteinfo", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
