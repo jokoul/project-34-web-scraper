@@ -1,7 +1,7 @@
 const cheerio = require("cheerio");
 const axios = require("axios");
 
-async function getHeading(url) {
+function getHeading(url) {
   axios(url)
     .then((response) => {
       //Get all the html code of the url site
@@ -9,9 +9,7 @@ async function getHeading(url) {
       //   console.log(html);
       //Get specific element in the html code
       const $ = cheerio.load(html); //create a query fn bound to html
-
       let articles = [];
-
       if ($("h1", html)) {
         $("h1", html).each(function () {
           const siteTitle = $(this)
@@ -38,7 +36,6 @@ async function getHeading(url) {
       }
 
       console.log(articles);
-      res.send(articles);
     })
     .catch((err) => console.log(err));
 }

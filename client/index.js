@@ -23,8 +23,8 @@ function submitUrlHeading() {
     })
     .then((data) => {
       console.log(data);
-      // data = data.articles;
-      // console.log(data);
+      //   data = data.articles;
+      //   console.log(data);
       let h1Array = data.filter((item) => {
         console.log(item);
         return item.siteTitle !== undefined;
