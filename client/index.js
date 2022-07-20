@@ -11,7 +11,7 @@ function newEl(type, attrs = {}) {
 function submitUrlHeading() {
   const siteUrl = document.querySelector(".urlInput").value;
   //send to server
-  fetch("http://localhost:3000/siteinfo", {
+  fetch("https://web-scraper-joan.herokuapp.com/siteinfo", {
     //http://localhost:3000
     method: "POST",
     headers: {
@@ -86,7 +86,7 @@ function submitUrlScreenshot() {
   const siteUrl = document.querySelector(".urlInput2").value;
   //send to server
   //after deployment we change the base url (http://localhost:3000) to the live url (https://web-scraper-joan.herokuapp.com)
-  fetch("http://localhost:3000/siteimage", {
+  fetch("https://web-scraper-joan.herokuapp.com/siteimage", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
