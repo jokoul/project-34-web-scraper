@@ -93,6 +93,6 @@ function submitUrlScreenshot() {
     .then((response) => response.json())
     .then((data) => {
       console.log(data);
-      window.location.reload;
+      window.location.reload();
     });
 }
