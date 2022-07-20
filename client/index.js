@@ -98,4 +98,5 @@ function submitUrlScreenshot() {
       console.log(data);
       window.location.reload();
     });
+  window.location.reload();
 }
