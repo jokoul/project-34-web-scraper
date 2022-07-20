@@ -2,6 +2,7 @@ const express = require("express");
 const scrap = require("./scrap");
 const cheerio = require("cheerio");
 const axios = require("axios");
+const path = require("path");
 
 //we create our server app
 const app = express();
@@ -59,6 +60,13 @@ app.post("/siteimage", (req, res) => {
   const url = req.body.url;
   scrap.scrap(url);
   res.send({ message: "success" });
+});
+
+//Define static site folder name
+app.use(express.static("client"));
+//Define the middleware to serve static file
+app.use("/", (req, res) => {
+  res.sendFile(path.join(__dirname + "/client/index.html"));
 });
 
 //Define the port
