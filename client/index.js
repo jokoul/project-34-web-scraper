@@ -11,7 +11,7 @@ function newEl(type, attrs = {}) {
 function submitUrlHeading() {
   const siteUrl = document.querySelector(".urlInput").value;
   //send to server
-  fetch("https://web-scraper-joan.herokuapp.com/siteinfo", {
+  fetch("http://localhost:3000/siteinfo", {
     //http://localhost:3000
     method: "POST",
     headers: {
@@ -43,6 +43,9 @@ function submitUrlHeading() {
       const ctr = document.querySelector(".container");
       const ctr2 = document.querySelector(".container2");
       const ctr3 = document.querySelector(".container3");
+      ctr.innerHTML = "";
+      ctr2.innerHTML = "";
+      ctr3.innerHTML = "";
       if (h1Array.length == 0) {
         const heading1 = newEl("p", {
           innerText: "No heading level 1 in the page ",
@@ -83,7 +86,7 @@ function submitUrlScreenshot() {
   const siteUrl = document.querySelector(".urlInput2").value;
   //send to server
   //after deployment we change the base url (http://localhost:3000) to the live url (https://web-scraper-joan.herokuapp.com)
-  fetch("https://web-scraper-joan.herokuapp.com/siteimage", {
+  fetch("http://localhost:3000/siteimage", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -93,6 +96,6 @@ function submitUrlScreenshot() {
     .then((response) => response.json())
     .then((data) => {
       console.log(data);
+      window.location.reload();
     });
-  window.location.reload();
 }
